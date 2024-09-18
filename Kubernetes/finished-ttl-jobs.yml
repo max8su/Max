@@ -1,0 +1,17 @@
+---
+apiVersion: batch/v1beta1
+kind: Job
+metadata:
+  name: demo-job
+  namespace: demo
+spec:
+  ttlSecondsAfterFinished: 300
+template:
+  spec:
+    containers:
+      - name: demo-cron
+        image: busybox:latest
+        command:
+          - /bin/sh
+          - -c
+          - Job complete!

@@ -1,0 +1,13 @@
+kubectl get jobs
+kubectl delete job POD
+
+#multiple jobs that match a label in the parent cronjob
+#spec.jobTemplate.metadata.labels
+kubectl delete jobs --field-selector status.succesful=1
+
+#delete cronjobs
+kubectl delete jobs -l cron-job=demo-cron 
+
+#delete cronjobs / that have failed
+kubectl delete jobs -l cron-job=demo-cron --field-selector status.succesful=1
+

@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: demo-cron
+  namespace: demo
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 300
+    template:
+      spec:
+        containers:
+          - name: demo-cron
+            image: busybox:latest
+            command:
+              - /bin/sh
+              - -c
+              - Job complete!

@@ -1,0 +1,23 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: demo-cron
+  namespace: demo
+  labels:
+    app: clean-pods
+spec:
+  schedule: "* * * * *"
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: null
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: demo-cron
+              image: busybox:latest
+              command:
+                - /bin/sh
+                - -c
+                - Job complete!
